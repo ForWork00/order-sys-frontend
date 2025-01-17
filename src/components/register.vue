@@ -16,6 +16,14 @@ const onSubmit = async () => {
     alert('請輸入正確長度的密碼');
     return; // 阻止提交
   }
+  if (/\s/.test(password.value)) {
+  alert('密碼中不能包含空格，請修改後重新輸入');
+  return; // 阻止提交
+}
+if (/\s/.test(username.value)) {
+  alert('帳號中不能包含空格，請修改後重新輸入');
+  return; // 阻止提交
+}
   try {
     await register({ username: username.value, password: password.value });
     alert('註冊成功，請登入');
