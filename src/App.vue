@@ -44,7 +44,7 @@ const goregister=()=>{
 <template>
   <header>
     <img class="logo" src="@/assets/Logo.jpg" alt="logo" width="40" height="40" />
-    <p>正老林羊肉爐</p>
+    <p>Demo</p>
     <div class="dropdown">
       <img @click="toggleMenu" src="@/assets/login.png" class="floatright" alt="login" width="40" height="40" />
         <div v-if="isMenuOpen" class="dropdown-menu">
@@ -63,7 +63,7 @@ const goregister=()=>{
   <router-view /> 
 
   <footer>
-    <p>© 2025 Lamb Hot Pot. All rights reserved.</p>
+    <p>© 2025 Demo. All rights reserved.</p>
   </footer>
 </template>
 
