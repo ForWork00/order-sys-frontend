@@ -1,15 +1,20 @@
 <script setup>
-import { useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router'
+import { getNextStep, getPreviousStep } from "@/api/stepSwitch.js"
+const route = useRoute()
 const router = useRouter()
-const goSelectSoup = () => {
-  
-   router.push({ name: 'soup-base' })
+
+const goToNextStep = () => {
+  const nextStepPath = getNextStep(route.path)
+  if (nextStepPath) {
+    router.push(nextStepPath)
+  }
 }
 </script>
 
 
 <template>
-  <button @click="goSelectSoup">開始點餐</button> 
+  <button @click="goToNextStep">開始點餐</button> 
 </template>
 
 
