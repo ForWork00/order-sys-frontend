@@ -1,5 +1,23 @@
 <script setup>
   import { ref } from 'vue'
+  import { useRoute, useRouter } from 'vue-router'
+  import { getNextStep, getPreviousStep } from "@/api/stepSwitch.js"
+  const route = useRoute()
+  const router = useRouter()
+  
+  const goToNextStep = () => {
+    const nextStepPath = getNextStep(route.path)
+    if (nextStepPath) {
+      router.push(nextStepPath)
+    }
+  }
+
+  const goToPreviousStep = () => {
+    const previousStepPath = getPreviousStep(route.path)
+    if (previousStepPath) {
+      router.push(previousStepPath)
+    }
+  }
 
   const value = ref(0)
   const min = 0
@@ -16,8 +34,8 @@
 
 <template>
   <h1>選擇湯底</h1>
-<!-- 這邊先寫死，之後要打api向後端要湯底資料 -->
- <!-- 第二個湯底 -->
+  <!-- 這邊先寫死，之後要打api向後端要湯底資料 -->
+  <!-- 第二個湯底 -->
   <div class="soup1">
     <img src="" alt="招牌紅燒湯底">
 
@@ -28,7 +46,7 @@
     </div>
   </div>
   <!-- 第二個湯底 -->
-   <div class="soup2">
+  <div class="soup2">
     <img src="" alt="麻辣紅燒湯底">
 
     <div class="number-input">
@@ -38,7 +56,7 @@
     </div>
   </div>
   <!-- 第三個湯底 -->
-   <div class="soup3">
+  <div class="soup3">
     <img src="" alt="清燉蔬菜湯底">
 
     <div class="number-input">
@@ -47,16 +65,17 @@
       <button class="increment" @click="increment">▶</button>
     </div>
   </div>
-  <!-- 下一步，選擇加購品 -->
-  <div class="goAddOns">
-    <button>下一步</button>
+  <!-- 下一步或是上一步 -->
+  <div class="step-switch">
+    <button @click="goToPreviousStep">上一步</button>
+    <button @click="goToNextStep">下一步</button>
   </div>
-   
+
 
 </template>
 
 <style scoped>
-.goAddOns{
+.step-switch{
   display: block;
 }
 .number-input {
